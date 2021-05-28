@@ -1,5 +1,5 @@
-FROM jenkins/agent:latest
-USER root
+FROM jenkins/inbound-agent:4.7-1-jdk11
+
 ENV DOCKERVERSION=20.10.5
 ENV KUBECTLVERSION=v1.21.1
 
