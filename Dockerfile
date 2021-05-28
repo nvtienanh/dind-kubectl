@@ -1,4 +1,4 @@
-FROM jenkins/jnlp-slave
+FROM jenkins/agent:latest
 USER root
 ENV DOCKERVERSION=20.10.5
 ENV KUBECTLVERSION=v1.21.1
@@ -11,5 +11,7 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTLVERSION}/bin/linux/amd64/kubectl \
 	&& chmod +x ./kubectl \
 	&& mv ./kubectl /usr/local/bin/kubectl
+
+USER jenkins
 
 LABEL org.opencontainers.image.source https://github.com/nvtienanh/dind-kubectl
