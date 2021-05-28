@@ -12,6 +12,4 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL
 	&& chmod +x ./kubectl \
 	&& mv ./kubectl /usr/local/bin/kubectl
 
-USER jenkins
-
 LABEL org.opencontainers.image.source https://github.com/nvtienanh/dind-kubectl
