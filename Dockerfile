@@ -11,3 +11,5 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTLVERSION}/bin/linux/amd64/kubectl \
 	&& chmod +x ./kubectl \
 	&& mv ./kubectl /usr/local/bin/kubectl
+
+LABEL org.opencontainers.image.source https://github.com/nvtienanh/dind-kubectl
