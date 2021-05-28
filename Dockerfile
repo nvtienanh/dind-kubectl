@@ -1,6 +1,6 @@
 FROM jenkins/slave:latest
 USER root
-ENV DOCKERVERSION=20.10.5-ce
+ENV DOCKERVERSION=20.10.5
 ENV KUBECTLVERSION=v1.21.1
 
 RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \
