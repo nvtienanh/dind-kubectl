@@ -1,4 +1,4 @@
-FROM jenkins/slave:latest
+FROM jenkins/jnlp-slave
 USER root
 ENV DOCKERVERSION=20.10.5
 ENV KUBECTLVERSION=v1.21.1
