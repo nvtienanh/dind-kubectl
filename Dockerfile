@@ -4,7 +4,7 @@ USER root
 # with newer versions of curl. The solution is to upgrade libcurl.
 RUN apk update && apk add -u libcurl curl
 # Install Docker client
-ARG DOCKERVERSION=20.10.6
+ARG DOCKERVERSION=20.10.6-ce
 ARG KUBECTLVERSION=1.21.0
 RUN curl -fsSL https://download.docker.com/linux/static/stable/`uname -m`/docker-$DOCKER_VERSION.tgz | tar --strip-components=1 -xz -C /usr/local/bin docker/docker
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTLVERSION}/bin/linux/amd64/kubectl \
