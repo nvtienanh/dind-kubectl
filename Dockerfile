@@ -3,6 +3,7 @@ USER root
 # Alpine seems to come with libcurl baked in, which is prone to mismatching
 # with newer versions of curl. The solution is to upgrade libcurl.
 RUN apk update && apk add -u libcurl curl
+RUN uname -m
 # Install Docker client
 ARG DOCKERVERSION=20.10.6
 ARG KUBECTLVERSION=1.21.1
