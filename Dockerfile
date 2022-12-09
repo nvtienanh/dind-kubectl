@@ -4,8 +4,8 @@ USER root
 # with newer versions of curl. The solution is to upgrade libcurl.
 RUN apk update && apk add -u libcurl curl
 # Install Docker client
-ARG DOCKER_VERSION=20.10.6
-ARG KUBECTL_VERSION=1.21.1
+ARG DOCKER_VERSION=20.10.21
+ARG KUBECTL_VERSION=1.24.9
 RUN curl -fsSL https://download.docker.com/linux/static/stable/`uname -m`/docker-$DOCKER_VERSION.tgz | tar --strip-components=1 -xz -C /usr/local/bin docker/docker
 RUN curl -LO https://dl.k8s.io/release/v$KUBECTL_VERSION/bin/linux/amd64/kubectl \
 && chmod +x kubectl \
