@@ -10,6 +10,7 @@ RUN add-apt-repository \
 RUN apt-get update  -qq \
     && apt-get install docker-ce docker-ce-cli -y
 RUN usermod -aG docker jenkins
+RUN chmod 666 /var/run/docker.sock
 
 USER jenkins
 LABEL org.opencontainers.image.source https://github.com/nvtienanh/dind-kubectl
