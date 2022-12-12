@@ -11,9 +11,10 @@ USER root
 # Install Docker CLI
 RUN apk update && apk add --no-cache docker-cli
 # Add Docker permissions to Jenkins user
-RUN DOCKER_GID=1000 && \
-    delgroup $(grep $DOCKER_GID /etc/group | cut -d: -f1) && \
-    addgroup -S -g $DOCKER_GID docker && addgroup jenkins docker
+# RUN DOCKER_GID=999 && \
+#     delgroup $(grep $DOCKER_GID /etc/group | cut -d: -f1) && \
+#     addgroup -S -g $DOCKER_GID docker && addgroup jenkins docker
+RUN addgroup jenkins docker
 
 COPY jenkins-agent /usr/local/bin/jenkins-agent
 RUN chmod +x /usr/local/bin/jenkins-agent &&\
