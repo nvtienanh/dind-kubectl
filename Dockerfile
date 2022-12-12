@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:lts
+FROM jenkins/inbound-agent:latest
 USER root
 RUN apt-get update -qq \
     && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
