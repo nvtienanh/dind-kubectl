@@ -8,7 +8,7 @@ RUN add-apt-repository \
    $(lsb_release -cs) \
    stable"
 RUN apt-get update  -qq \
-    && apt-get install docker-ce=20.10.21~ce-0~debian -y
+    && apt-get install docker-ce-cli -y
 RUN usermod -aG docker jenkins
 
 USER jenkins
