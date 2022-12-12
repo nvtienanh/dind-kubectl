@@ -1,16 +1,23 @@
-FROM jenkins/inbound-agent:latest
-USER root
-RUN apt-get update -qq \
-    && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
-RUN apt-get update  -qq \
-    && apt-get install docker-ce docker-ce-cli -y
-RUN usermod -aG docker jenkins
-RUN chmod 666 /var/run/docker.sock
+ARG version=3077.vd69cf116da_6f-3
+FROM jenkins/agent:${version}-alpine-jdk11
 
-USER jenkins
-LABEL org.opencontainers.image.source https://github.com/nvtienanh/dind-kubectl
+ARG version=3077.vd69cf116da_6f-3
+LABEL Description="This is a base image, which allows connecting Jenkins agents via JNLP protocols" Vendor="Jenkins project" Version="$version"
+
+ARG user=jenkins
+
+USER root
+
+# Install Docker CLI
+RUN apk update && apk add --no-cache docker-cli
+# Add Docker permissions to Jenkins user
+RUN DOCKER_GID=1000 && \
+    delgroup $(grep $DOCKER_GID /etc/group | cut -d: -f1) && \
+    addgroup -S -g $DOCKER_GID docker && addgroup jenkins docker
+
+COPY jenkins-agent /usr/local/bin/jenkins-agent
+RUN chmod +x /usr/local/bin/jenkins-agent &&\
+    ln -s /usr/local/bin/jenkins-agent /usr/local/bin/jenkins-slave
+USER ${user}
+
+ENTRYPOINT ["/usr/local/bin/jenkins-agent"]
